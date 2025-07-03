@@ -6,61 +6,111 @@
   <title>멀티모달 프롬프트 인젝션</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
-      padding: 20px;
+      font-family: 'Noto Sans KR', sans-serif;
+      background-color: #f8f9fa;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
       max-width: 900px;
-      margin: auto;
-    }
-    h1 {
-      color: #2c3e50;
-    }
-    img {
-      max-width: 100%;
-      margin: 20px 0;
-      border: 1px solid #ddd;
+      margin: 40px auto;
+      padding: 0 20px;
+      background-color: #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
       border-radius: 8px;
     }
+
+    h1 {
+      font-size: 2em;
+      color: #2c3e50;
+      margin-bottom: 10px;
+      padding-top: 30px;
+    }
+
+    p {
+      line-height: 1.7;
+      font-size: 1.05em;
+      color: #333;
+    }
+
+    .section {
+      padding: 20px 30px;
+    }
+
+    .images {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      margin-top: 30px;
+    }
+
+    .image-box {
+      text-align: center;
+    }
+
+    .image-box img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.1);
+    }
+
     .caption {
       font-size: 0.9em;
       color: #555;
-      margin-bottom: 40px;
+      margin-top: 8px;
+    }
+
+    @media (min-width: 768px) {
+      .images {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+
+      .image-box {
+        width: 48%;
+      }
     }
   </style>
 </head>
 <body>
 
-  <h1>멀티모달 프롬프트 인젝션(Multimodal Prompt Injection)</h1>
+  <div class="container">
+    <div class="section">
+      <h1>멀티모달 프롬프트 인젝션<br><small style="font-size: 0.6em; color: #555;">Multimodal Prompt Injection</small></h1>
 
-  <p>
-    멀티모달 프롬프트 인젝션은 텍스트뿐 아니라 이미지, 오디오 등 다양한 입력 형태를 활용해 인공지능 모델의 의도된 동작을 교란하거나 악용하는 공격 방식입니다.
-    예를 들어, 이미지에 보이지 않는 텍스트나 스테가노그래피를 삽입함으로써 LLM(Large Language Model)의 응답을 조작할 수 있습니다.
-  </p>
+      <p>
+        멀티모달 프롬프트 인젝션은 텍스트뿐 아니라 이미지, 오디오 등 다양한 입력 형태를 활용해 인공지능 모델의 의도된 동작을 교란하거나 악용하는 공격 방식입니다.
+        예를 들어, 이미지에 보이지 않는 텍스트나 스테가노그래피를 삽입함으로써 LLM(Large Language Model)의 응답을 조작할 수 있습니다.
+      </p>
 
-  <p>
-    이 공격은 특히 <strong>멀티모달 LLM</strong>이 웹, 이메일, 또는 자동화된 툴과 연결되어 있는 경우 심각한 보안 위협이 될 수 있습니다.
-    사용자가 보낸 이미지를 통해 명령을 은밀하게 삽입하거나, 관리자 권한 확인 없이 행동을 유도하는 등의 피해가 발생할 수 있습니다.
-  </p>
+      <p>
+        이 공격은 특히 <strong>멀티모달 LLM</strong>이 웹, 이메일, 또는 자동화된 툴과 연결되어 있는 경우 심각한 보안 위협이 될 수 있습니다.
+        사용자가 보낸 이미지를 통해 명령을 은밀하게 삽입하거나, 관리자 권한 확인 없이 행동을 유도하는 등의 피해가 발생할 수 있습니다.
+      </p>
+    </div>
 
-  <h2>예시 이미지</h2>
-
-  <img src="img1.png" alt="멀티모달 인젝션 예시 1">
-  <div class="caption">▲ 그림 1: 텍스트가 숨겨진 이미지 예시</div>
-
-  <img src="img2.png" alt="멀티모달 인젝션 예시 2">
-  <div class="caption">▲ 그림 2: 모델이 인식한 명령어 텍스트</div>
-
-  <img src="img3.png" alt="멀티모달 인젝션 대응 방안">
-  <div class="caption">▲ 그림 3: 멀티모달 입력의 필터링 및 검증 방안</div>
-
-  <h2>보안 대응 방안</h2>
-  <ul>
-    <li>이미지 내 숨겨진 메시지 탐지(스테가노그래피 검사)</li>
-    <li>LLM의 입력 파이프라인에 필터링 레이어 삽입</li>
-    <li>중요 행동(이메일 전송, DB 수정 등)에 대한 사용자 검증 절차 강화</li>
-  </ul>
-
-  <p>더 자세한 내용은 OWASP의 LLM Top 10 또는 관련 논문을 참고하시기 바랍니다.</p>
+    <div class="section">
+      <h2>예시 이미지</h2>
+      <div class="images">
+        <div class="image-box">
+          <img src="img1.png" alt="예시 이미지 1" />
+          <div class="caption">▲ 이미지 1: 숨겨진 메시지가 삽입된 이미지</div>
+        </div>
+        <div class="image-box">
+          <img src="img2.png" alt="예시 이미지 2" />
+          <div class="caption">▲ 이미지 2: LLM이 인식한 명령어 텍스트</div>
+        </div>
+        <div class="image-box">
+          <img src="img3.png" alt="예시 이미지 3" />
+          <div class="caption">▲ 이미지 3: 멀티모달 입력에 대한 대응 방안</div>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </body>
 </html>
+
