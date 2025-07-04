@@ -4,122 +4,111 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>멀티모달 프롬프트 인젝션</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
       font-family: 'Noto Sans KR', sans-serif;
+      background: linear-gradient(to bottom right, #f8f9fa, #e9ecef);
       margin: 0;
       padding: 0;
-      background: #f2f4f7;
+      color: #212529;
     }
 
-    .wrapper {
-      max-width: 1100px;
-      margin: 40px auto;
-      padding: 20px;
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    .container {
+      max-width: 1000px;
+      margin: 60px auto;
+      padding: 40px;
+      background-color: #fff;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
     }
 
     h1 {
-      font-size: 2.2em;
-      margin-bottom: 0.4em;
-      color: #2c3e50;
+      font-size: 2.6em;
+      color: #212529;
+      margin-bottom: 8px;
     }
 
-    p {
-      color: #444;
-      line-height: 1.7;
+    h1 small {
+      font-size: 0.5em;
+      color: #6c757d;
     }
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 30px;
-      margin-top: 40px;
+    h2 {
+      margin-top: 2.5em;
+      color: #343a40;
+      border-left: 6px solid #0d6efd;
+      padding-left: 10px;
     }
 
-    .card {
-      height: 450px;
-      background: #ffffff;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
-      overflow: hidden;
-      transition: transform 0.2s ease;
+    p, li {
+      font-size: 1.05em;
+      line-height: 1.8;
     }
 
-    .card:hover {
-      transform: translateY(-6px);
+    .highlight {
+      font-weight: bold;
+      color: #0d6efd;
     }
 
-    .card img {
-      height: 400px;
-      width: 100%;
-      display: block;
-      object-fit: cover;
+    .quote {
+      background: #f1f3f5;
+      border-left: 5px solid #51a7f9;
+      padding: 15px 20px;
+      margin: 20px 0;
+      font-style: italic;
+      font-size: 1.05em;
+      color: #495057;
     }
 
-    .caption {
-      padding: 12px 16px;
-      font-size: 0.95em;
-      color: #555;
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    ul li::before {
+      content: "\2022";
+      color: #0d6efd;
+      font-weight: bold;
+      display: inline-block;
+      width: 1em;
+      margin-left: -1em;
     }
 
     .section {
       margin-bottom: 40px;
     }
-    .highlight {
-        font-weight: bold;
-        color: #004085;
-    }
-    .quote {
-        background: #e9ecef;
-        border-left: 4px solid #007bff;
-        padding: 10px 20px;
-        margin: 20px 0;
-        font-style: italic;
-    }
-
-    @media (max-width: 768px) {
-      .wrapper {
-        margin: 20px;
-      }
-    }
   </style>
 </head>
 <body>
-
-  <div class="wrapper">
-    <h1>멀티모달 프롬프트 인젝션<br><small style="font-size: 0.6em; color: #555;">Multimodal Prompt Injection</small></h1>
+  <div class="container">
+    <h1>멀티모달 프롬프트 인젝션<br><small>Multimodal Prompt Injection</small></h1>
     <p>
       멀티모달 프롬프트 인젝션은 텍스트뿐 아니라 이미지, 오디오 등 다양한 입력 형태를 활용해 인공지능 모델의 의도된 동작을 교란하거나 악용하는 공격 방식입니다.
       예를 들어, 이미지에 보이지 않는 텍스트나 스테가노그래피를 삽입함으로써 LLM(Large Language Model)의 응답을 조작할 수 있습니다.
     </p>
     <p>
-      이러한 공격은 특히 <strong>멀티모달 LLM이 외부 시스템과 연결</strong>되어 있을 경우, 보안상 매우 심각한 위협이 될 수 있습니다. 
-      예를 들어, <strong>도구 실행(tool calling)</strong>이나 <strong>데이터베이스 질의</strong>, <strong>이메일 전송</strong> 등의 기능이 연결된 에이전틱 LLM 환경에서는 단 하나의 이미지 입력만으로도 <strong>관리자 권한 상승</strong>이나 <strong>데이터 탈취</strong>가 발생할 수 있습니다.
+      이러한 공격은 특히 <span class="highlight">멀티모달 LLM이 외부 시스템과 연결</span>되어 있을 경우, 보안상 매우 심각한 위협이 될 수 있습니다. 
+      예를 들어, <span class="highlight">도구 실행(tool calling)</span>이나 <span class="highlight">데이터베이스 질의</span>, <span class="highlight">이메일 전송</span> 등의 기능이 연결된 에이전틱 LLM 환경에서는 단 하나의 이미지 입력만으로도 
+      <span class="highlight">관리자 권한 상승</span>이나 <span class="highlight">데이터 탈취</span>가 발생할 수 있습니다.
     </p>
 
-    <div class="section">
-        <h2>LLL 컴퍼니 사례 (CTF 시나리오)</h2>
-        <p>
-          LLL 컴퍼니는 내부 업무 자동화를 위해 에이전틱 LLM 기반의 <strong>AI 비서 시스템</strong>을 도입했습니다. 
-          이 AI 비서는 사용자의 자연어 프롬프트나 이미지 입력을 해석해 <strong>이메일 전송</strong>, <strong>데이터베이스 조회</strong>, <strong>계정 권한 판별</strong> 등 다양한 도구를 자동으로 호출할 수 있습니다.
-        </p>
-
-        <div class="quote">
-            "누군가 멀티모달 프롬프트 인젝션을 통해, 일반 사용자가 보낸 이미지 속에 관리자 명령어를 은닉해 AI 비서가 <strong>최고 관리자 권한</strong>을 부여받고, <strong>기밀 정보가 포함된 데이터베이스 쿼리 기능을 무단 사용</strong>하는 일이 벌어질 수 있습니다."
-        </div>
+    <h2>LLL 컴퍼니 사례 (CTF 시나리오)</h2>
+    <p>
+      LLL 컴퍼니는 내부 업무 자동화를 위해 에이전틱 LLM 기반의 <strong>AI 비서 시스템</strong>을 도입했습니다. 
+      이 AI 비서는 사용자의 자연어 프롬프트나 이미지 입력을 해석해 <span class="highlight">이메일 전송</span>, <span class="highlight">데이터베이스 조회</span>, <span class="highlight">계정 권한 판별</span> 등 다양한 도구를 자동으로 호출할 수 있습니다.
+    </p>
+    <div class="quote">
+      "누군가 멀티모달 프롬프트 인젝션을 통해, 일반 사용자가 보낸 이미지 속에 관리자 명령어를 은닉해 
+      AI 비서가 <strong>최고 관리자 권한</strong>을 부여받고, <strong>기밀 정보가 포함된 데이터베이스 쿼리 기능을 무단 사용</strong>하는 일이 벌어질 수 있습니다."
     </div>
 
-    <div class="section">
-        <h2>요조</h2>
-        <ul>
-            <li><strong>멀티모달 프롬프트 인젝션</strong>: 비정형 입력을 통한 LLM 제어 공격</li>
-            <li><strong>에이전틱 LLM</strong>: 외부 도구 및 시스템과 결합된 고위험 환경</li>
-            <li><strong>교육용 테스트베드</strong>: 보안 교육 및 인식 제고 도구로 활용 가능</li>
-        </ul>
-    </div>
+    <h2>요조</h2>
+    <ul>
+      <li><strong>멀티모달 프롬프트 인젝션</strong>: 비정형 입력을 통한 LLM 제어 공격</li>
+      <li><strong>에이전틱 LLM</strong>: 외부 도구 및 시스템과 결합된 고위험 환경</li>
+      <li><strong>교육용 테스트베드</strong>: 보안 교육 및 인식 제고 도구로 활용 가능</li>
+    </ul>
 
     <h2 style="margin-top: 40px;">예시 이미지</h2>
     <div class="grid">
@@ -137,8 +126,5 @@
       </div>
     </div>
   </div>
-
 </body>
 </html>
-
-
