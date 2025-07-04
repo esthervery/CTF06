@@ -65,6 +65,21 @@
       color: #555;
     }
 
+    .section {
+      margin-bottom: 40px;
+    }
+    .highlight {
+        font-weight: bold;
+        color: #004085;
+    }
+    .quote {
+        background: #e9ecef;
+        border-left: 4px solid #007bff;
+        padding: 10px 20px;
+        margin: 20px 0;
+        font-style: italic;
+    }
+
     @media (max-width: 768px) {
       .wrapper {
         margin: 20px;
@@ -81,9 +96,30 @@
       예를 들어, 이미지에 보이지 않는 텍스트나 스테가노그래피를 삽입함으로써 LLM(Large Language Model)의 응답을 조작할 수 있습니다.
     </p>
     <p>
-      이 공격은 특히 <strong>멀티모달 LLM</strong>이 웹, 이메일, 또는 자동화된 툴과 연결되어 있는 경우 심각한 보안 위협이 될 수 있습니다.
-      사용자가 보낸 이미지를 통해 명령을 은밀하게 삽입하거나, 관리자 권한 확인 없이 행동을 유도하는 등의 피해가 발생할 수 있습니다.
+      이러한 공격은 특히 <strong>멀티모달 LLM이 외부 시스템과 연결</strong>되어 있을 경우, 보안상 매우 심각한 위협이 될 수 있습니다. 
+      예를 들어, <strong>도구 실행(tool calling)</strong>이나 <strong>데이터베이스 질의</strong>, <strong>이메일 전송</strong> 등의 기능이 연결된 에이전틱 LLM 환경에서는 단 하나의 이미지 입력만으로도 <strong>관리자 권한 상승</strong>이나 <strong>데이터 탈취</strong>가 발생할 수 있습니다.
     </p>
+
+    <div class="section">
+        <h2>LLL 컴퍼니 사례 (CTF 시나리오)</h2>
+        <p>
+          LLL 컴퍼니는 내부 업무 자동화를 위해 에이전틱 LLM 기반의 <strong>AI 비서 시스템</strong>을 도입했습니다. 
+          이 AI 비서는 사용자의 자연어 프롬프트나 이미지 입력을 해석해 <strong>이메일 전송</strong>, <strong>데이터베이스 조회</strong>, <strong>계정 권한 판별</strong> 등 다양한 도구를 자동으로 호출할 수 있습니다.
+        </p>
+
+        <div class="quote">
+            "누군가 멀티모달 프롬프트 인젝션을 통해, 일반 사용자가 보낸 이미지 속에 관리자 명령어를 은닉해 AI 비서가 <strong>최고 관리자 권한</strong>을 부여받고, <strong>기밀 정보가 포함된 데이터베이스 쿼리 기능을 무단 사용</strong>하는 일이 벌어질 수 있습니다."
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>요조</h2>
+        <ul>
+            <li><strong>멀티모달 프롬프트 인젝션</strong>: 비정형 입력을 통한 LLM 제어 공격</li>
+            <li><strong>에이전틱 LLM</strong>: 외부 도구 및 시스템과 결합된 고위험 환경</li>
+            <li><strong>교육용 테스트베드</strong>: 보안 교육 및 인식 제고 도구로 활용 가능</li>
+        </ul>
+    </div>
 
     <h2 style="margin-top: 40px;">예시 이미지</h2>
     <div class="grid">
